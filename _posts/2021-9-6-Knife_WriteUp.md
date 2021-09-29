@@ -3,8 +3,8 @@ layout: post
 title: HackTheBox - Knife 
 ---
 
-#linux #htb
-
+#linux #htb  
+[https://app.hackthebox.eu/machines/Knife](https://app.hackthebox.eu/machines/Knife)
 
 Running nmap on the vulnerable machine
 ![nmap]({{ site.baseurl }}/images/Knife/nmap.png)

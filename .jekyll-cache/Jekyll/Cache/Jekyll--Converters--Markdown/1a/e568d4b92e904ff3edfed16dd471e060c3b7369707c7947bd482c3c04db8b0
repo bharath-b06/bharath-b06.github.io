@@ -1,0 +1,62 @@
+I"�<p>#linux #htb<br />
+<a href="https://app.hackthebox.eu/machines/Knife">Machine Link</a></p>
+
+<p>Running nmap on the vulnerable machine
+<img src="/images/Knife/nmap.png" alt="nmap" />
+2 ports open - 22, 80</p>
+
+<hr />
+<p>Looking at the website, it seems to be some kind of a hospital website
+<img src="/images/Knife/website.png" alt="web" /></p>
+
+<p>Running gobuster on the website, but no useful directories :(
+<img src="/images/Knife/gobust_fail.png" alt="gob" /></p>
+
+<p>Running wappalyzer to get more information about the website</p>
+
+<p><img src="/images/Knife/wappa.png" alt="wapp" /></p>
+
+<p>We get the php version running on the website
+Looking for exploits for php 8.1.0</p>
+
+<p>Exploit db has a script for the exact php version, to gain rce
+<a href="https://www.exploit-db.com/exploits/49933">https://www.exploit-db.com/exploits/49933</a>
+<img src="/images/Knife/exploitdb.png" alt="edb" /></p>
+
+<hr />
+
+<p>Running the python exploit from exploitdb,</p>
+
+<p><img src="/images/Knife/revshell.png" alt="revs" /></p>
+
+<p>We get an unstable shell, therefore to make it stable<br />
+Tried running a few reverse shell commands
+nc, python, bash from this link
+<a href="https://gist.github.com/sckalath/67a59eb4955f1f9aedde">https://gist.github.com/sckalath/67a59eb4955f1f9aedde</a></p>
+
+<p>Running 
+<img src="/images/Knife/upgradeshell.png" alt="rev" />
+ended up working, with a listener running on the attacker machine</p>
+
+<p>Grabbing the user flag :D
+<img src="/images/Knife/user.png" alt="user" /></p>
+
+<hr />
+
+<h3 id="privilege-escalation">Privilege escalation</h3>
+<p>Running <code class="language-plaintext highlighter-rouge">sudo -l</code> gives an idea of what the user is capable of, and if its able to get increase privs</p>
+
+<p><img src="/images/Knife/sudol.png" alt="su" /></p>
+
+<p>There exists a “knife” executable, it is written in ruby<br />
+Looking for options to run knife using the –help flag:
+<img src="/images/Knife/knifeexec.png" alt="ke" /></p>
+
+<p>To get root, in ruby we can run bash commands inside the system() function
+<img src="/images/Knife/root.png" alt="root" /></p>
+
+<p>Grab the root flag x</p>
+
+<p><a href="https://youtu.be/dJy7ByTpbyk">Here is a cat video</a></p>
+
+:ET

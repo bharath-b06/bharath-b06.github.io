@@ -63,6 +63,6 @@ To get root, in ruby we can run bash commands inside the system() function
 
 Grab the root flag x
 
-[Here is a chonk cat video](https://youtu.be/dJy7ByTpbyk)  
+[Here is a chonk cat](https://youtu.be/dJy7ByTpbyk)  
 
 

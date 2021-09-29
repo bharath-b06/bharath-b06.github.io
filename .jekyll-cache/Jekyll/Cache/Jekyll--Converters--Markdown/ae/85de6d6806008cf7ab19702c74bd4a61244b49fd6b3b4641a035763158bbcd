@@ -1,0 +1,52 @@
+I"�<p>#linux #htb<br />
+<a href="https://app.hackthebox.eu/machines/Cap">https://app.hackthebox.eu/machines/Cap</a></p>
+
+<p>Running nmap on the vulnerable machine
+<img src="/images/Cap/Nmap.png" alt="nmap" />
+3 ports open - 21, 22, 80</p>
+
+<hr />
+
+<p>Trying to login to the Ftp server, No Anonymous login :(
+<img src="/images/Cap/ftp_fail.png" alt="failftp" /></p>
+
+<hr />
+<p>Looking at the website, it seems to be some kind of security dashboard
+<img src="/images/Cap/website.png" alt="web" /></p>
+
+<p>The data directory had some packet captures, along with some stats regarding the same
+<img src="/images/Cap/3.png" alt="data" />
+Here, we can download the pcap files. But /data/9 didnt seem to contain useful information
+Tinkering with the number, and downloading the /data/0 file
+<img src="/images/Cap/wireshark.png" alt="wire" /></p>
+
+<p>Viewing it in wireshark, looking for logins or any other useful info
+With the filter “ftp”, we get usename and password
+<img src="/images/Cap/login_info.png" alt="ftp" /></p>
+
+<hr />
+<p>Using this login information to get access to the ftp server, 
+<img src="/images/Cap/ftp.png" alt="login" /></p>
+
+<p>Using the “get” command, pull both the linpeas.sh (used later for priv esc) as well as the user.txt to the attacker machine.<br />
+User flag is 
+<img src="/images/Cap/user.png" alt="user" /></p>
+
+<hr />
+<p>Using scp (ssh copy), we can send the linpeas.sh file to the machine.<br />
+Logging in using the same credentials through ssh.</p>
+
+<p>Running linpeas.sh (it is an enumeration script)
+Found  a weakness : 
+<img src="/images/Cap/python3.png" alt="py" /></p>
+
+<p>Which means, we need to leverage python3 to get root.
+One of the ways, is to execute /bin/sh with the setUID as 0 (root)</p>
+
+<p>Python script  :
+<img src="/images/Cap/privesc.png" alt="pe" /></p>
+
+<p>Running the script, we end up getting root, and the flag :D
+<img src="/images/Cap/root.png" alt="root" /></p>
+
+:ET

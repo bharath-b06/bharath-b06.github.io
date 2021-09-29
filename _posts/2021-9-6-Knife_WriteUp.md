@@ -2,7 +2,6 @@
 layout: post
 title: HackTheBox - Knife 
 ---
-
 #linux #htb  
 [https://app.hackthebox.eu/machines/Knife](https://app.hackthebox.eu/machines/Knife)
 

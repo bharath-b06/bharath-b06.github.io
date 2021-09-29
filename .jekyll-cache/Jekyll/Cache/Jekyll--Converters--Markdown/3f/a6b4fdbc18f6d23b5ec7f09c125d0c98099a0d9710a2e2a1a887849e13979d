@@ -1,0 +1,73 @@
+I"n	<p>#linux #htb</p>
+
+<p>Running nmap on the vulnerable machine
+<img src="/images/Knife/nmap.png" alt="nmap" />
+2 ports open - 22, 80</p>
+
+<hr />
+<p>Looking at the website, it seems to be some kind of a hospital website
+<img src="Images/website.png" alt="web" />
+<img src="/images/Knife/website.png" alt="nmap" /></p>
+
+<hr />
+<p>Running gobuster on the website, but no useful pages :(
+<img src="Images/gobust_fail.png" alt="gob" />
+<img src="/images/Knife/gobust_fail.png" alt="nmap" /></p>
+
+<p>Running wappalyzer to get more information about the website</p>
+
+<p><img src="Images/wappa.png" alt="wapp" />
+<img src="/images/Knife/wappa.png" alt="nmap" /></p>
+
+<p>We get the php version running on the website
+Looking for exploits for php 8.1.0</p>
+
+<p>Exploit db has a script for the exact php version, to gain rce
+https://www.exploit-db.com/exploits/49933
+<img src="Images/exploitdb.png" alt="edb" />
+<img src="/images/Knife/exploitdb.png" alt="nmap" /></p>
+
+<hr />
+
+<p>Running the python exploit,</p>
+
+<p><img align="left" src="Images/revshell.png" />
+<img src="/images/Knife/revshell.png" alt="nmap" /></p>
+
+<p>We get an unstable shell, therefore to make it stable
+Tried running a few reverse shell commands
+nc, python, bash from this link
+https://gist.github.com/sckalath/67a59eb4955f1f9aedde</p>
+
+<p>Running 
+<img src="Images/upgradeshell.png" alt="rev" /><br />
+<img src="/images/Knife/upgradeshell.png" alt="nmap" /></p>
+
+<p>ended up working, with a listener running on the attacker machine</p>
+
+<p>Grabbing the user flag :D
+<img src="Images/user.png" alt="user" />
+<img src="/images/Knife/user.png" alt="nmap" /></p>
+
+<hr />
+
+<h3 id="privilege-escalation">Privilege escalation</h3>
+<p>Running <code class="language-plaintext highlighter-rouge">sudo -l</code> gives an idea of what the user is capable of, and if its able to get increase privs</p>
+
+<p><img src="Images/sudol.png" alt="su" />
+<img src="/images/Knife/sudol.png" alt="nmap" /></p>
+
+<p>There exists a “knife” executable, it is written in ruby
+Looking for options to run knife :
+<img src="Images/knifeexec.png" alt="ke" />
+<img src="/images/Knife/knifeexec.png" alt="nmap" /></p>
+
+<p>To get root, in ruby we can run bash commands inside the system() function
+<img src="Images/root.png" alt="root" />
+<img src="/images/Knife/root.png" alt="nmap" /></p>
+
+<p>Grab the root flag x</p>
+
+<p>[Here is a cat video] (https://youtu.be/dJy7ByTpbyk)</p>
+
+:ET
